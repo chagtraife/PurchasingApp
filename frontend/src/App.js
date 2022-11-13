@@ -31,13 +31,13 @@ function App() {
         <div className='navbar__logo'>
           <img src={logo} className="BK-logo" alt="logo" />
         </div>
-        <b className="navbar__title">BKU</b>
+        <div className="navbar__title">BKU</div>
       </div>
         
       <div className='navbar__items_bottom'>
-        <a className='navbar__link' href='/Purchasing'> Purchasing</a>
-        <a className='navbar__link' href='/OrderManagement'> Order Management</a>
-        <a className='navbar__link' href='/About'> About</a>
+        <a className='navbar__link' href='/Purchasing' style={{opacity: (window.location.pathname==="/Purchasing" || window.location.pathname==="/") ? 1 : 0.7}}> Purchasing</a>
+        <a className='navbar__link' href='/OrderManagement' style={{opacity: window.location.pathname==="/OrderManagement" ? 1 : 0.7}}> Order Management</a>
+        <a className='navbar__link' href='/About' style={{opacity: window.location.pathname==="/About" ? 1 : 0.7}}> About</a>
       </div>
 
       </header>

@@ -3,15 +3,16 @@
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  background-image: linear-gradient(to bottom, #CC99FF, #D5739D);
 }
 
 .navbar__brand {
   align-items: center;
   display: flex;
-  margin-right: 1rem;
+  margin-left: 3rem;
   min-width: 0;
   top:0;
-  min-height: 6rem;
+  min-height: 4rem;
 }
 .BK-logo {
   height: 2rem;
@@ -22,17 +23,30 @@
   margin-right: 0.5rem;
 }
 .navbar__title {
-  flex: 1 1 auto;
-  overflow: hidden;
+  color: white;
+  font-family: "Helvetica";
+  font-size: larger;
 }
 
 .navbar__link {
   padding-left: 10px;
   padding-right: 10px;
+  color: white;
+  font-size: larger;
+  text-decoration:none;
+  font-family: "Helvetica";
+  opacity: 0.7;
+}
+.navbar__link:hover {
+  opacity: 1;
+}
+.navbar__link:visited {
+  opacity: 1;
 }
 
 .navbar__items_bottom {
-  min-height: 6rem;
+  min-height: 2rem;
+  text-align: center;
 }
 
 .App-link {
@@ -49,7 +63,7 @@
   background-color: #20232a;
   color: #ffffff;
   padding-top: 10px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .App-footer_text{
@@ -70,4 +84,16 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.aboutContent {
+  margin-top: 3rem;
+  margin-left: 3rem;
+  text-align: center;
+}
+
+.aboutDescription{
+  opacity: 0.8;
+  font-style: italic;
+  font-family: "Courier New"
 }
