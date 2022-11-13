@@ -13,7 +13,7 @@ class Purchasing extends React.Component {
 
     updateInput(event){
         this.setState({productId : event.target.value})
-        }
+    }
 
     findPurchasingAction(){
         console.log("findAction");
