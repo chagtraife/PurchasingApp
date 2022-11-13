@@ -7,12 +7,18 @@ class Purchasing extends React.Component {
       }
     state = {
         listVendorTable : null,
-        purchaseHistoryTable : null
+        purchaseHistoryTable : null,
+        productId : ''
     }
+
+    updateInput(event){
+        this.setState({productId : event.target.value})
+        }
 
     findPurchasingAction(){
         console.log("findAction");
-        axios.get('http://localhost:4000/api/purchasing/1')
+        if (this.state.productId == '') return;
+        axios.get('http://localhost:4000/api/purchasing/' + this.state.productId)
         .then(res => {
         let listVendor = res.data.listVendor;
         console.log(listVendor);
@@ -101,7 +107,7 @@ class Purchasing extends React.Component {
                 <div>Enter the product you want to purchase</div> 
                 <div>
                     <b> Product Id </b> 
-                    <input type="text" id="fname" name="fname"></input>
+                    <input type="text" id="fname" name="fname"  onChange={this.updateInput.bind(this)}></input>
                     <button type="button" className="el_button" onClick={this.findPurchasingAction.bind(this)}>
                         <span>Find</span>
                     </button>
