@@ -36,7 +36,22 @@ exports.index = async function (req, res, next) {
       order["VendorName"] = vendorInfor.first()["Name"];
       order["ShipMethod"] = ShipMethodName;
       order["ShipDate"] = String(row['ShipDate']);
-      order["Status"] = String(row['Status']);
+      switch (row['Status']){
+        case 1: 
+          order["Status"] = "Pending";
+          break;
+        case 2: 
+          order["Status"] = "Approved";
+          break;
+        case 3: 
+          order["Status"] = "Rejected";
+          break;
+        case 4:
+          order["Status"] = "Complete";
+          break;
+        default: 
+          order["Status"] = "";
+      }
       orderList.push(order);
     }
     res.json({orderList: orderList})

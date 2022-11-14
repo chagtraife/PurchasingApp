@@ -4,20 +4,61 @@ import React from 'react';
 class Purchasing extends React.Component {
     constructor(props) {
         super(props);
-      }
+        axios.get('http://localhost:4000/api/product/')
+        .then(res => {
+            let productList = res.data.productList;
+            this.setState({productList : productList});
+
+            let values = productList.map(
+                (product) => {
+                    return(<option value= {product["ProductName"]}></option>)
+                }
+            )
+
+            let productData =(
+                <datalist id="productNames">
+                    {values}
+                </datalist>
+            )
+            this.setState({productData: productData})
+
+        }
+        )
+    }
     state = {
         listVendorTable : null,
         purchaseHistoryTable : null,
-        productId : ''
+        productId : '',
+        productList: null,
+        productData: null
     }
 
     updateInput(event){
-        this.setState({productId : event.target.value})
+        let productName = event.target.value;
+        let products = this.state.productList;
+        let productId
+        for (var i = 0; i < products.length; i++){
+            // look for the entry with a matching `code` value
+            if (products[i]["ProductName"] === productName){
+                productId = products[i]["ProductId"]
+            }
+          }
+        this.setState({productId : productId})
+    }
+
+    getProdctNameList(){
+        console.log("getProdctNameList");
+        axios.get('http://localhost:4000/api/product/')
+        .then(res => {
+            let productList = res.data.productList;
+            this.setState({productList : productList})
+        }
+        )
     }
 
     findPurchasingAction(){
         console.log("findAction");
-        if (this.state.productId == '') return;
+        if (this.state.productId === undefined) return;
         axios.get('http://localhost:4000/api/purchasing/' + this.state.productId)
         .then(res => {
         let listVendor = res.data.listVendor;
@@ -102,25 +143,34 @@ class Purchasing extends React.Component {
     }
 
     render() {
+        let body = (<div className='purchasing-body'></div>)
+        if (this.state.listVendorTable || this.state.purchaseHistoryTable){
+            body = (                
+            <div className='purchasing-body'>
+                <hr></hr>
+                <h2>List Vendor</h2> 
+                {this.state.listVendorTable}
+                <hr></hr>
+                <h2>Product Purchase History</h2> 
+                {this.state.purchaseHistoryTable}
+            </div>
+        )
+        }
         return (
-            <div> 
-                <div>Enter the product you want to purchase</div> 
-                <div>
-                    <b> Product Id </b> 
-                    <input type="text" id="fname" name="fname"  onChange={this.updateInput.bind(this)}></input>
-                    <button type="button" className="el_button" onClick={this.findPurchasingAction.bind(this)}>
-                        <span>Find</span>
-                    </button>
+            <div className='purchasing'> 
+                <div className='purchasing-header'>
+                    <div>
+                        <b> Product Name </b> 
+                        <input list="productNames" id="productName" name="productName" onChange={this.updateInput.bind(this)}></input>
+                        {this.state.productData}
+
+                        <button type="button" className="el_button" onClick={this.findPurchasingAction.bind(this)}>
+                            <span>Find</span>
+                        </button>
+                    </div>
+                    <div className='purchasing-header-description'>Enter the product you want to purchase</div> 
                 </div>
-
-                <div>
-                    <div>List Vendor</div> 
-                    {this.state.listVendorTable}
-
-                    <div>Product Purchase History</div> 
-                    {this.state.purchaseHistoryTable}
-                </div>
-
+                {body}
             </div>
         )
     }

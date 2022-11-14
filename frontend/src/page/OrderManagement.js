@@ -4,7 +4,7 @@ import React from 'react';
 class OrderManagement extends React.Component{
     constructor(props) {
         super(props);
-      }
+    }
     state = {
         orderListTable : null,
         employeeId : ''
@@ -16,7 +16,7 @@ class OrderManagement extends React.Component{
 
     findOrderAction(){
         console.log("findOrderAction");
-        if (this.state.employeeId == '') return;
+        if (this.state.employeeId === '') return;
         axios.get('http://localhost:4000/api/order/' + this.state.employeeId)
         .then(res => {
           let orderList = res.data.orderList;
@@ -61,18 +61,29 @@ class OrderManagement extends React.Component{
     }
     
     render() {
+        let body = (<div className='orderManagement-body'></div>)
+        if (this.state.orderListTable){
+            body = (                
+            <div className='orderManagement-body'>
+                <hr></hr>
+                <h2>Order List</h2> 
+                {this.state.orderListTable}
+            </div>
+        )
+        }
         return (
-            <div> 
-                <div>Enter the employee you want to find</div> 
-                <div>
-                    <b> Employee </b> 
-                    <input type="text" id="fname" name="fname" onChange={this.updateInput.bind(this)}></input>
-                    <button type="button" className="el_button" onClick={this.findOrderAction.bind(this)}>
-                        <span>Find</span>
-                    </button>
+            <div className='orderManagement'> 
+                <div className='orderManagement-header'>
+                    <div>
+                        <b> Employee Id </b> 
+                        <input type="text" id="fname" name="fname" onChange={this.updateInput.bind(this)}></input>
+                        <button type="button" className="el_button" onClick={this.findOrderAction.bind(this)}>
+                            <span>Find</span>
+                        </button>
+                    </div>
+                    <div className='orderManagement-header-description'>Enter the employee Id you want to find</div> 
                 </div>
-                <div>Order List</div> 
-                    {this.state.orderListTable}
+                {body}
             </div>
         )
     }

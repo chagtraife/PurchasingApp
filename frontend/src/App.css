@@ -13,7 +13,7 @@
   margin-left: 3rem;
   min-width: 0;
   top:0;
-  min-height: 4rem;
+  min-height: 3rem;
 }
 .BK-logo {
   height: 2rem;
@@ -30,8 +30,8 @@
 }
 
 .navbar__link {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
   color: white;
   font-size: larger;
   text-decoration:none;
@@ -54,7 +54,8 @@
 
 .main-wrapper {
   min-height: 80vh;
-
+  width: 80%;
+  margin-left: 10%;
 }
 
 .App-footer {
@@ -93,5 +94,32 @@ tr:nth-child(even) {
 .aboutDescription{
   opacity: 0.8;
   font-style: italic;
-  font-family: "Courier New"
+  font-family: "Courier New";
+}
+
+hr {
+  margin: 30px -15px;
+  /* min-height: 4vh; */
+}
+
+.purchasing{
+ margin-top: 3rem;
+}
+.purchasing-header{
+  text-align: center;
+}
+.purchasing-header-description{
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.orderManagement{
+  margin-top: 3rem;
+}
+.orderManagement-header{
+  text-align: center;
+}
+.orderManagement-header-description{
+  opacity: 0.6;
+  font-style: italic;
 }
