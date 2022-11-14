@@ -148,7 +148,7 @@ class Purchasing extends React.Component {
             body = (                
             <div className='purchasing-body'>
                 <hr></hr>
-                <h2>List Vendor</h2> 
+                <h2>Vendor List</h2> 
                 {this.state.listVendorTable}
                 <hr></hr>
                 <h2>Product Purchase History</h2> 
